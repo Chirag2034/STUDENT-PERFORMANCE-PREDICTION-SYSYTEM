@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 # -------------------------
 # Title
 # -------------------------
-st.title("🎓 Student Performance Prediction + Analysis + Chatbot")
+st.title(" Student Performance Prediction + Analysis + Chatbot")
 
 # -------------------------
 # Load Dataset
@@ -17,16 +17,16 @@ st.title("🎓 Student Performance Prediction + Analysis + Chatbot")
 try:
     df = pd.read_csv("stud.csv")
 except:
-    st.error("❌ Dataset not found! Keep 'stud.csv' in same folder.")
+    st.error(" Dataset not found! Keep 'stud.csv' in same folder.")
     st.stop()
 
 # -------------------------
 # Preview
 # -------------------------
-st.write("### 📊 Dataset Preview")
+st.write("###  Dataset Preview")
 st.write(df.head())
 
-st.write("### 📌 Columns")
+st.write("###  Columns")
 st.write(df.columns)
 
 # -------------------------
@@ -45,27 +45,27 @@ for col in df.select_dtypes(include='object').columns:
 # Target Column (Auto)
 # -------------------------
 target_column = df.columns[-1]
-st.write(f"🎯 Target Column: **{target_column}**")
+st.write(f"Target Column: **{target_column}**")
 
 X = df.drop(target_column, axis=1)
 y = df[target_column]
 
 # -------------------------
-# 📊 STUDENT PERFORMANCE ANALYSIS
+#  STUDENT PERFORMANCE ANALYSIS
 # -------------------------
-st.write("## 📊 Student Performance Analysis")
+st.write("## Student Performance Analysis")
 
 # Distribution (FIXED)
-st.write("### 📊 Distribution of Student Performance")
+st.write("### Distribution of Student Performance")
 st.bar_chart(df[target_column].value_counts())
 
 # Feature vs Performance (FIXED)
-st.write("### 📈 Feature vs Performance")
+st.write("###  Feature vs Performance")
 feature = st.selectbox("Select Feature", X.columns)
 st.line_chart(df[[feature, target_column]])
 
 # Average stats
-st.write("### 📊 Average Feature Values by Performance")
+st.write("### Average Feature Values by Performance")
 st.write(df.groupby(target_column).mean())
 
 # -------------------------
@@ -90,7 +90,7 @@ model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
-st.write("## 📊 Model Performance")
+st.write("##  Model Performance")
 st.write(f"Accuracy: {accuracy*100:.2f}%")
 
 # Comparison Graph (FIXED)
@@ -104,7 +104,7 @@ st.line_chart(comparison_df)
 # -------------------------
 # Prediction Input
 # -------------------------
-st.write("## 📥 Predict Student Performance")
+st.write("## Predict Student Performance")
 
 input_data = []
 for col in X.columns:
@@ -114,12 +114,12 @@ for col in X.columns:
 if st.button("Predict"):
     input_scaled = scaler.transform([input_data])
     prediction = model.predict(input_scaled)
-    st.success(f"✅ Predicted Result: {prediction[0]}")
+    st.success(f"Predicted Result: {prediction[0]}")
 
 # -------------------------
 # Chatbot
 # -------------------------
-st.write("## 🤖 Chatbot Assistant")
+st.write("## Chatbot Assistant")
 
 user_input = st.text_input("Ask something about student performance...")
 
@@ -127,19 +127,19 @@ def chatbot_response(query):
     query = query.lower()
 
     if "improve" in query:
-        return "📚 Study regularly, revise daily, and practice questions."
+        return " Study regularly, revise daily, and practice questions."
     elif "fail" in query:
-        return "⚠️ Low attendance and lack of study lead to failure."
+        return " Low attendance and lack of study lead to failure."
     elif "pass" in query:
-        return "✅ Maintain consistency in study and attendance."
+        return " Maintain consistency in study and attendance."
     elif "attendance" in query:
-        return "📊 Good attendance improves understanding."
+        return " Good attendance improves understanding."
     elif "marks" in query:
-        return "📈 Practice and revision improve marks."
+        return " Practice and revision improve marks."
     elif "hello" in query:
-        return "👋 Hello! I am your assistant."
+        return " Hello! I am your assistant."
     else:
-        return "🤖 Ask me about performance, study tips, or marks."
+        return " Ask me about performance, study tips, or marks."
 
 if user_input:
     st.write("Bot:", chatbot_response(user_input))
