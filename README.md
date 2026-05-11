@@ -94,7 +94,7 @@ st.write("##  Model Performance")
 st.write(f"Accuracy: {accuracy*100:.2f}%")
 
 # Comparison Graph (FIXED)
-st.write("### 📉 Actual vs Predicted")
+st.write("###  Actual vs Predicted")
 comparison_df = pd.DataFrame({
     "Actual": y_test.values[:20],
     "Predicted": y_pred[:20]
