@@ -1,0 +1,2 @@
+# STUDENT-PERFORMANCE-PREDICTION-SYSYTEM
+Student Performance Prediction System is a Machine Learning web app using Python and Streamlit to predict student results based on academic data. It provides performance analysis, visualization, and a chatbot assistant for study guidance and improvement tips.
